@@ -1,6 +1,5 @@
 package com.server.pokiwar.dto;
 
-import jakarta.persistence.Column;
 import lombok.Data;
 
 import java.util.List;
@@ -19,6 +18,6 @@ public class CardDto {
     private int maxLever;
 
     private int lever;
-
+    private Long conditionUse;
     private List<ImageDto> image;
 }

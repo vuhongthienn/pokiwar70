@@ -1,13 +1,12 @@
 package com.server.pokiwar.repository;
 
+import com.server.pokiwar.dto.CardUserDto;
 import com.server.pokiwar.model.CardUser;
-import com.server.pokiwar.model.CountPass;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface CardUserRepository extends JpaRepository<CardUser,Long> {
@@ -16,5 +15,10 @@ public interface CardUserRepository extends JpaRepository<CardUser,Long> {
             "FROM tbl_card_user " +
             "WHERE id_user =:idUser", nativeQuery = true)
     List<CardUser> listCardUser(Long idUser);
+
+    @Query(value = "SELECT new com.server.pokiwar.dto.CardUserDto(cu.id, cu.idCard, cu.idUser, cu.lever, cu.count, cu.value, c.conditionUse) " +
+            "FROM CardUser cu, Card c " +
+            "WHERE cu.id = :id AND cu.idCard = c.id")
+    CardUserDto findByIdWhere(Long id);
 
 }

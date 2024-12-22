@@ -1,7 +1,9 @@
 package com.server.pokiwar.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
@@ -29,6 +31,9 @@ public class Card {
 
     @Column(name = "lever")
     private int lever;
+
+    @Column(name = "condition_use")
+    private Long conditionUse;
 
 
 }

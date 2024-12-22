@@ -1,6 +1,5 @@
 package com.server.pokiwar.dto;
 
-import jakarta.persistence.Column;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -28,6 +27,19 @@ public class CardUserDto {
     private String name;
 
     private String thumbnail;
+    private Long conditionUse;
 
     private List<ImageDto> imageCard;
+
+    public CardUserDto(Long id, Long idCard, Long idUser, Integer lever, Integer count, int value, Long conditionUse) {
+        this.id = id;
+        this.idCard = idCard;
+        this.idUser = idUser;
+        this.lever = lever;
+        this.count = count;
+        this.value = value;
+        this.conditionUse = conditionUse;
+    }
 }
+
+

@@ -1,8 +1,14 @@
 package com.server.pokiwar.service.impl;
 
-import com.server.pokiwar.dto.*;
+import com.server.pokiwar.dto.CardUserDto;
+import com.server.pokiwar.dto.ImageDto;
+import com.server.pokiwar.dto.RequestMatch;
+import com.server.pokiwar.dto.UserPlayerDto;
 import com.server.pokiwar.exception.MessageResponse;
-import com.server.pokiwar.model.*;
+import com.server.pokiwar.model.EnemyPet;
+import com.server.pokiwar.model.Pet;
+import com.server.pokiwar.model.PetUser;
+import com.server.pokiwar.model.UserPlayer;
 import com.server.pokiwar.repository.*;
 import com.server.pokiwar.service.MatchService;
 import org.modelmapper.ModelMapper;
@@ -72,7 +78,7 @@ public class MatchServiceImpl implements MatchService {
             if(!idCard.isEmpty()){
                 //lấy list card có hình
                 for (Long id : idCard) {
-                    CardUserDto cardUserDto = mapper.map(cardUserRepository.findById(id).orElse(null), CardUserDto.class);
+                    CardUserDto cardUserDto = cardUserRepository.findByIdWhere(id);
                     List<ImageDto> image = imageRepository.findByIdCard(id).stream()
                             .map(m -> mapper.map(m, ImageDto.class)).toList();
                     cardUserDto.setImageCard(image);
