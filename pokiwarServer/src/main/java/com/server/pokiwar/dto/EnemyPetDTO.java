@@ -22,5 +22,7 @@ public class EnemyPetDTO {
 
     private int count;
 
+    private Long parentId;
+
     private String thumbnail;
 }

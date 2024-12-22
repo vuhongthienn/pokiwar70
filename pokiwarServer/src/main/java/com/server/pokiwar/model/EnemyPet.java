@@ -45,4 +45,7 @@ public class EnemyPet {
 
     @Column(name = "request_pass")
     private int requestPass;
+
+    @Column(name = "parent_id")
+    private Long parentId;
 }
