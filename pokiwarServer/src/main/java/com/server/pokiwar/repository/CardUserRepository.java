@@ -13,7 +13,7 @@ public interface CardUserRepository extends JpaRepository<CardUser,Long> {
 
     @Query(value = "SELECT * " +
             "FROM tbl_card_user " +
-            "WHERE id_user =:idUser", nativeQuery = true)
+            "WHERE id_user =:idUser AND lever != 14", nativeQuery = true)
     List<CardUser> listCardUser(Long idUser);
 
     @Query(value = "SELECT new com.server.pokiwar.dto.CardUserDto(cu.id, cu.idCard, cu.idUser, cu.lever, cu.count, cu.value, c.conditionUse) " +
