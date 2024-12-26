@@ -53,14 +53,9 @@ public class RoomWaitService {
                         .orElseThrow(() -> new EntityNotFoundException("Pet user not found")),
                 PetUserDto.class
         );
+        Pet pet = petRepository.findById(petUserDto.getIdPet()).get();
+        userPlayerDto.setIdCard(pet.getIdCard());
 
-        // Preload images for user and pet
-        CompletableFuture<List<ImageDto>> userImagesFuture = CompletableFuture.supplyAsync(() ->
-                imageRepository.findByIdPet(request.getIdUser())
-                        .stream()
-                        .map(entity -> mapper.map(entity, ImageDto.class))
-                        .toList()
-        );
 
         // Fetch enemy pet details
         CompletableFuture<EnemyPet> enemyPetFuture = CompletableFuture.supplyAsync(() ->
